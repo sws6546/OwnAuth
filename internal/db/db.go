@@ -17,7 +17,7 @@ var (
 	sslmode  = config.PgSslMode
 )
 
-var Db *sql.DB
+var DbConn *sql.DB
 
 func InitConnection() error {
 	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=%s", host, port, user, password, dbname, sslmode)
@@ -26,11 +26,11 @@ func InitConnection() error {
 	if err != nil {
 		return err
 	}
-	Db = db
+	DbConn = db
 
 	return nil
 }
 
 func CloseDb() {
-	Db.Close()
+	DbConn.Close()
 }
